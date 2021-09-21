@@ -2,8 +2,6 @@ import pymysql.cursors
 from tkinter import *
 from tkinter.ttk import Combobox
 
-
-# bu kod githuba gider
 db = pymysql.connect(host='sql5.freemysqlhosting.net',
                              user='sql5436558',
                              password='4wlHZNFSWd',
