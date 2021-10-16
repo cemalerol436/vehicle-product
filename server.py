@@ -2,10 +2,10 @@ from flask import Flask, request
 import pymysql.cursors
 
 
-db = pymysql.connect(host='sql6.freemysqlhosting.net',
-                     user='sql6440654',
-                     password='786nQnceiY',
-                     db='sql6440654',
+db = pymysql.connect(host='localhost',
+                     user='cemal',
+                     password='Q1w2e3r4t5.!',
+                     db='vehicles',
                      charset='utf8mb4',
                      cursorclass=pymysql.cursors.DictCursor)
 baglanti = db.cursor()
