@@ -45,7 +45,7 @@ def models():
 @app.route('/get-products')
 def products():
     vehicle = request.args.get("vehicle")
-    baglanti.execute('SELECT id, name, start_year, end_year FROM vehicles WHERE brand=%s', [vehicle])
+    baglanti.execute('SELECT p.id, p.bracket_group, p.product_name, p.image FROM products as p LEFT JOIN vehicle_product as vp ON vp.bracket_group = p.bracket_group WHERE vp.vehicle_id=%s', [vehicle])
     products = baglanti.fetchall()
     list = []
     for k in products:
