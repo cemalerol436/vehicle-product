@@ -93,8 +93,8 @@ Object.entries(excelData[sheetName]).forEach((line) => {
 })
 
 
-//console.log(productsInsetSQLs.join("\n"))
+console.log(productsInsetSQLs.join("\n"))
 //console.log(vehiclesInsetSQLs.join("\n"))
-console.log(relationInsetSQLs.join("\n"))
+//console.log(relationInsetSQLs.join("\n"))
 
 
