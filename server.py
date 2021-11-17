@@ -2,7 +2,7 @@ from flask import Flask, request
 import pymysql.cursors
 
 
-db = pymysql.connect(host='localhost',
+db = pymysql.connect(host='167.99.211.234',
                      user='cemal',
                      password='Q1w2e3r4t5.!',
                      db='vehicles',
