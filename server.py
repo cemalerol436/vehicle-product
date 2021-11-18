@@ -1,7 +1,10 @@
+# These are the codes to bring informations from database and push it to the html.
+
+#
 from flask import Flask, request
 import pymysql.cursors
 
-
+#The connection Informations;
 db = pymysql.connect(host='167.99.211.234',
                      user='cemal',
                      password='Q1w2e3r4t5.!',
@@ -10,23 +13,32 @@ db = pymysql.connect(host='167.99.211.234',
                      cursorclass=pymysql.cursors.DictCursor)
 baglanti = db.cursor()
 
-app = Flask(__name__)
+#To reach to the root directory.
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='Public',
+            template_folder='')
+@app.route('/')
 
 
+def root():
+    return app.send_static_file('index.html')
 @app.route('/get-brands')
+
+
+
 def brands():
     baglanti.execute('SELECT DISTINCT brand FROM vehicles')
     markalar = baglanti.fetchall()
     list = []
     for k in markalar:
         list.append(k.get('brand'))
-
     return {
         "data": list
     }
-
-
 @app.route('/get-models')
+
+
 def models():
     brand = request.args.get("brand")
     baglanti.execute('SELECT id, name, start_year, end_year FROM vehicles WHERE brand=%s', [brand])
@@ -38,11 +50,12 @@ def models():
                      "modelstart":k.get("start_year"),
                      "modelend":k.get("end_year")
                      })
-
     return {
         "data": list
     }
 @app.route('/get-products')
+
+
 def products():
     vehicle = request.args.get("vehicle")
     baglanti.execute('SELECT p.id, p.bracket_group, p.product_name, p.image FROM products as p LEFT JOIN vehicle_product as vp ON vp.bracket_group = p.bracket_group WHERE vp.vehicle_id=%s', [vehicle])
@@ -54,7 +67,6 @@ def products():
                      "product_name":k.get("product_name"),
                      "image":k.get("image")
                      })
-
     return {
         "data": list
     }
