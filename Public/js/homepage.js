@@ -34,7 +34,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 
 	$.ajax({
-		url: "/get-models?brand=AUDI aa",
+		url: "/get-models?brand=AUDI",
 		async: false,
 		success : function(response){
 			loadHeaderData(response)
