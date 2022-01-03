@@ -11,6 +11,7 @@ db = pymysql.connect(host='167.99.211.234',
                      db='vehicles',
                      charset='utf8mb4',
                      cursorclass=pymysql.cursors.DictCursor)
+
 baglanti = db.cursor()
 
 #To reach to the root directory.
@@ -18,15 +19,15 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='Public',
             template_folder='')
+
 @app.route('/')
 
 
 def root():
     return app.send_static_file('index.html')
+
+
 @app.route('/get-brands')
-
-
-
 def brands():
     baglanti.execute('SELECT DISTINCT brand FROM vehicles')
     markalar = baglanti.fetchall()
@@ -36,9 +37,8 @@ def brands():
     return {
         "data": list
     }
+
 @app.route('/get-models')
-
-
 def models():
     brand = request.args.get("brand")
     baglanti.execute('SELECT id, name, start_year, end_year FROM vehicles WHERE brand=%s', [brand])
@@ -53,9 +53,9 @@ def models():
     return {
         "data": list
     }
+
+
 @app.route('/get-products')
-
-
 def products():
     vehicle = request.args.get("vehicle")
     baglanti.execute('SELECT p.id, p.bracket_group, p.product_name, p.image FROM products as p LEFT JOIN vehicle_product as vp ON vp.bracket_group = p.bracket_group WHERE vp.vehicle_id=%s', [vehicle])
@@ -63,9 +63,9 @@ def products():
     list = []
     for k in products:
         list.append({"id": k.get("id"),
-                     "bracket_group":k.get("bracket_group"),
-                     "product_name":k.get("product_name"),
-                     "image":k.get("image")
+                     "bracket_group": k.get("bracket_group"),
+                     "product_name": k.get("product_name"),
+                     "image": k.get("image")
                      })
     return {
         "data": list
