@@ -1,0 +1,19 @@
+{
+    "status": "success", 
+    "result": {
+      "brands": [
+        {
+          "id": 1,
+          "name": "AUDI"
+        },
+        {
+          "id": 2,
+          "name": "BMW"
+        },
+        {
+          "id": 3,
+          "name": "CHERY"
+        }
+      ]
+    }
+  }
