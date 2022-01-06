@@ -79,7 +79,7 @@ $(document).ready(function(){
                 }
             });
         })
-
+//vehicle
         document.getElementById("addNewVehicle").addEventListener("click", ()=>{
             const code = document.getElementById("codeField").value
             const model = document.getElementById("modelField").value
