@@ -57,8 +57,53 @@ $(document).ready(function(){
 
 		console.log(data)
 	}
-
-
 });
 
+$(document).ready(function(){
+//  "click" parameter is to get mouse click event into our codes.
+        document.getElementById("addNewProduct").addEventListener("click",()=>{
+            const name = document.getElementById("nameField").value
+            const bracket = document.getElementById("bracketField").value
+            const image = document.getElementById("imageField").value
+            $.ajax({
+                url: "/add-product",
+                data: {
+                    name,
+                    image,
+                    bracket
+                },
+                method: "post",
+                success : function(response){
+                    console.log(response);
+                    alert("it is saved!")
+                }
+            });
+        })
 
+        document.getElementById("addNewVehicle").addEventListener("click", ()=>{
+            const code = document.getElementById("codeField").value
+            const model = document.getElementById("modelField").value
+            const startyear = document.getElementById("startyearField").value
+            const endyear = document.getElementById("endyearField").value
+            const brand = document.getElementById("brandField").value
+            $.ajax({
+                url: "/add-vehicle",
+                data: {
+                    code,
+                    model,
+                    startyear,
+                    endyear,
+                    brand
+                },
+                method: "post",
+                success : function(response){
+                    if(response.success) {
+                        alert("it is done!")
+                    } else {
+                        alert("Error")
+                    }
+                    console.log(response);
+                }
+            });
+            });
+});

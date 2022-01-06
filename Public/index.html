@@ -13,32 +13,88 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                Please choose a brand:
-                <select id="brands-select">
-                    <option>Seçiniz</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                Please choose a model:
-                <select id="models-select">
-                    <option>Seçiniz</option>
-                </select>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            Please choose a brand:
+            <select id="brands-select">
+                <option>Seçiniz</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            Please choose a model:
+            <select id="models-select">
+                <option>Seçiniz</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            Please choose a model:
+            <select id="test-select">
+            </select>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/homepage.js"></script>
+    <h3>Add New Product</h3>
+    <div style="max-width:500px">
+        <div class="row">
+            <label class="col">Product Name</label>
+            <input name="name" id="nameField">
+        </div>
+        <div class="row">
+            <label class="col">Bracket Code</label>
+            <input name="bracket" id="bracketField">
+        </div>
+        <div class="row">
+            <label class="col">Product ImageUrl</label>
+            <input name="image" id="imageField">
+        </div>
+        <div class="row">
+            <button id="addNewProduct">
+                Send
+            </button>
+        </div>
+    </div>
+
+    <h3>Add New Vehicle</h3>
+    <div style="max-width:500px">
+        <div class="row">
+            <label class="col">Vehicle Code</label>
+            <input name="code" id="codeField">
+        </div>
+        <div class="row">
+            <label class="col">Brand</label>
+            <input name="brand" id="brandField">
+        </div>
+        <div class="row">
+            <label class="col">Vehicle Model</label>
+            <input name="model" id="modelField">
+        </div>
+        <div class="row">
+            <label class="col">Start Year</label>
+            <input name="startyear" id="startyearField">
+        </div>
+        <div class="row">
+            <label class="col">End Year</label>
+            <input name="endyear" id="endyearField">
+        </div>
+        <div class="row">
+            <button id="addNewVehicle">
+                Send
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/homepage.js"></script>
 </body>
 
 </html>
