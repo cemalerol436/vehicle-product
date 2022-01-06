@@ -28,11 +28,13 @@ def root():
 
 @app.route('/get-brands')
 def brands():
-    baglanti.execute('SELECT DISTINCT brand FROM vehicles')
+    baglanti.execute('SELECT min(id) AS id , brand FROM vehicles GROUP BY brand')
     markalar = baglanti.fetchall()
     list = []
     for k in markalar:
-        list.append(k.get('brand'))
+        list.append(({"id": k.get("id"),
+                     "brand": k.get("brand"),
+                     }))
     return {
         "data": list
     }
