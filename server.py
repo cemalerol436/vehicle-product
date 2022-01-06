@@ -36,8 +36,11 @@ def brands():
                      "brand": k.get("brand"),
                      }))
     return {
-        "data": list
+    "status": "success",
+    "result": {
+      "brands": list
     }
+  }
 
 
 @app.route('/add-product', methods=['POST'])

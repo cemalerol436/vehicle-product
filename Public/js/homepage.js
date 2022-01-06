@@ -1,63 +1,6 @@
 
 
-//  Homepage
-$(document).ready(function(){
 
-	$.ajax({  
-		url: "/get-brands",
-		async: false,
-		success : function(response){
-			loadHeaderData(response)
-		}
-	});
-
-	function loadHeaderData(data) {
-
-
-        const options = [];
-
-        data.data.forEach(item=>{
-
-            options.push('<option value="'+item+'">'+item+'</option>')
-
-        });
-
-
-        document.getElementById("brands-select").innerHTML = options.join('')
-
-		console.log(data)
-	}
-
-	
-});
-//  Homepage
-$(document).ready(function(){
-
-	$.ajax({
-		url: "/get-models?brand=AUDI",
-		async: false,
-		success : function(response){
-			loadHeaderData(response)
-		}
-	});
-
-	function loadHeaderData(data) {
-
-
-        const options = [];
-
-        data.data.forEach(item=>{
-
-            options.push('<option value="'+item+'">'+item.model + "  " + "(" + item.modelstart + " - " + item.modelend + ")" +'</option>')
-
-        });
-
-
-        document.getElementById("models-select").innerHTML = options.join('')
-
-		console.log(data)
-	}
-});
 
 $(document).ready(function(){
 //  "click" parameter is to get mouse click event into our codes.
@@ -106,4 +49,61 @@ $(document).ready(function(){
                 }
             });
             });
+
+
+        function loadBrands() {
+            $.ajax({
+                url: "/get-brands",
+                async: false,
+                success : setBrandOptions
+            });
+
+            function setBrandOptions(data) {
+
+
+                const options = [
+                '<option>Choose</option>'
+                ];
+
+                data.result.brands.forEach(item=>{
+
+                    options.push('<option value="'+item.brand+'">'+item.brand+'</option>')
+
+                });
+
+
+                document.getElementById("brands-select").innerHTML = options.join('')
+
+                console.log(data)
+            }
+        }
+
+        function loadModels(brand) {
+           $.ajax({
+                url: "/get-models?brand="+brand,
+                async: false,
+                success : setModelOption
+            });
+
+           function setModelOption(data) {
+                const options = [];
+                data.data.forEach(item=>{
+                    options.push('<option value="'+item+'">'+item.model + "  " + "(" + item.modelstart + " - " + item.modelend + ")" +'</option>')
+                });
+                document.getElementById("models-select").innerHTML = options.join('')
+                console.log(data)
+           }
+        }
+
+
+        loadBrands();
+
+        document.getElementById("brands-select").addEventListener("change", (event)=>{
+            const selectedValue = $(event.target).val();
+            console.log(event);
+            loadModels(selectedValue)
+
+
+        })
+
 });
