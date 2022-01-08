@@ -7,8 +7,8 @@
     <meta name="description" content="Emexotel">
     <meta name="author" content="Bootstrap Wizard">
     <title>Vehicle FE</title>
-    <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/homepage.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,71 +24,28 @@
     <div class="row">
         <div class="col-md-4">
             Please choose a brand:
+            <br>
             <select id="brands-select">
 
             </select>
         </div>
         <div class="col-md-4">
             Please choose a model:
+            <br>
             <select id="models-select">
 
             </select>
         </div>
         <div class="col-md-4">
-            Please choose a model:
-            <select id="test-select">
-            </select>
+            <br>
+            <button id="getProductsButton">Ürünleri Listele</button>
         </div>
     </div>
 
-    <h3>Add New Product</h3>
-    <div style="max-width:500px">
-        <div class="row">
-            <label class="col">Product Name</label>
-            <input name="name" id="nameField">
-        </div>
-        <div class="row">
-            <label class="col">Bracket Code</label>
-            <input name="bracket" id="bracketField">
-        </div>
-        <div class="row">
-            <label class="col">Product ImageUrl</label>
-            <input name="image" id="imageField">
-        </div>
-        <div class="row">
-            <button id="addNewProduct">
-                Send
-            </button>
-        </div>
-    </div>
 
-    <h3>Add New Vehicle</h3>
-    <div style="max-width:500px">
-        <div class="row">
-            <label class="col">Vehicle Code</label>
-            <input name="code" id="codeField">
-        </div>
-        <div class="row">
-            <label class="col">Brand</label>
-            <input name="brand" id="brandField">
-        </div>
-        <div class="row">
-            <label class="col">Vehicle Model</label>
-            <input name="model" id="modelField">
-        </div>
-        <div class="row">
-            <label class="col">Start Year</label>
-            <input name="startyear" id="startyearField">
-        </div>
-        <div class="row">
-            <label class="col">End Year</label>
-            <input name="endyear" id="endyearField">
-        </div>
-        <div class="row">
-            <button id="addNewVehicle">
-                Send
-            </button>
-        </div>
+    <div id="products">
+
+        [products]
     </div>
 
 </div>

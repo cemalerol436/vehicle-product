@@ -1,10 +1,11 @@
 # These are the codes to bring informations from database and push it to the html.
 
-#
+# The modules for flask and connection.
+
 from flask import Flask, request
 import pymysql.cursors
 
-# The connection Informations;
+# The connection Information;
 db = pymysql.connect(host='167.99.211.234',
                      user='cemal',
                      password='Q1w2e3r4t5.!',
@@ -36,9 +37,9 @@ def brands():
                      "brand": k.get("brand"),
                      }))
     return {
-    "status": "success",
-    "result": {
-      "brands": list
+        "status": "success",
+        "result": {
+         "brands": list
     }
   }
 
@@ -96,35 +97,26 @@ def models():
         "data": list
     }
 
-
 @app.route('/get-products')
 def products():
-    vehicle = request.args.get("vehicle")
-    baglanti.execute(
-        'SELECT p.id, p.bracket_group, p.product_name, p.image FROM products as p LEFT JOIN vehicle_product as vp ON vp.bracket_group = p.bracket_group WHERE vp.vehicle_id=%s',
-        [vehicle])
+    vehicle_id = request.args.get("vehicle")
+    baglanti.execute('SELECT vp.bracket_group, p.product_name, p.image, p.category_id, c.category_name '
+                     'FROM vehicle_product vp '
+                     'INNER JOIN products p ON p.bracket_group = vp.bracket_group '
+                     'INNER JOIN categories c ON p.category_id = c.id '
+                     'WHERE vp.vehicle_id=%s '
+                     'ORDER BY p.product_name', [vehicle_id])
     products = baglanti.fetchall()
     list = []
-    for k in products:
-        list.append({"id": k.get("id"),
-                     "bracket_group": k.get("bracket_group"),
-                     "product_name": k.get("product_name"),
-                     "image": k.get("image")
+    for p in products:
+        list.append({
+                     "bracket_group": p.get("bracket_group"),
+                     "product_name": p.get("product_name"),
+                     "image": p.get("image"),
+                    "category_id": p.get("category_id"),
+                    "category_name": p.get("category_name")
                      })
     return {
         "data": list
     }
 
-
-@app.route('/get-test1')
-def test():
-    baglanti.execute('SELECT * FROM test1')
-    works = baglanti.fetchall()
-    list = []
-    for k in works:
-        list.append({"name": k.get("name"),
-
-                     })
-    return {
-        "data": list
-    }

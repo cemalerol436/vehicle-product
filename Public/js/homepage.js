@@ -1,9 +1,7 @@
 
-
-
-
 $(document).ready(function(){
 //  "click" parameter is to get mouse click event into our codes.
+if(document.getElementById("addNewProduct")) {
         document.getElementById("addNewProduct").addEventListener("click",()=>{
             const name = document.getElementById("nameField").value
             const bracket = document.getElementById("bracketField").value
@@ -22,7 +20,9 @@ $(document).ready(function(){
                 }
             });
         })
-//vehicle
+
+}
+if( document.getElementById("addNewVehicle")) {
         document.getElementById("addNewVehicle").addEventListener("click", ()=>{
             const code = document.getElementById("codeField").value
             const model = document.getElementById("modelField").value
@@ -49,6 +49,9 @@ $(document).ready(function(){
                 }
             });
             });
+
+}
+//vehicle
 
 
         function loadBrands() {
@@ -88,22 +91,59 @@ $(document).ready(function(){
            function setModelOption(data) {
                 const options = [];
                 data.data.forEach(item=>{
-                    options.push('<option value="'+item+'">'+item.model + "  " + "(" + item.modelstart + " - " + item.modelend + ")" +'</option>')
+                    options.push('<option value="'+item.id+'">'+item.model + "  " + "(" + item.modelstart + " - " + item.modelend + ")" +'</option>')
                 });
                 document.getElementById("models-select").innerHTML = options.join('')
                 console.log(data)
            }
         }
 
+        function loadProducts(model) {
+
+           $.ajax({
+                url: "/get-products?vehicle="+model,
+                async: false,
+                success : setProductOption
+            });
+
+           function setProductOption(data) {
+                const options = [];
+                data.data.forEach(item=>{
+
+                    const image = item.image || `/products/${item.product_name.substring(0,5)}.jpg`
+
+                    options.push('<div>'
+                    +'<small>'+item.category_name +'</small>'
+                    +'<p>'+item.product_name+'</p>'
+                    +'<img src="'+image+'" />'
+                    +'</div>')
+                });
+                document.getElementById("products").innerHTML = options.join('')
+                console.log(data)
+           }
+        }
+
 
         loadBrands();
-
         document.getElementById("brands-select").addEventListener("change", (event)=>{
             const selectedValue = $(event.target).val();
             console.log(event);
             loadModels(selectedValue)
-
-
         })
+
+        loadModels();
+
+        if(document.getElementById("getProductsButton")) {
+            document.getElementById("getProductsButton").addEventListener("click", ()=>{
+                const selectedValue = $("#models-select").val();
+                loadProducts(selectedValue)
+            })
+        }
+        /*
+        document.getElementById("models-select").addEventListener("change", (event)=>{
+            const selectedValue = $(event.target).val();
+            console.log(event);
+            loadProducts(selectedValue)
+        }) */
 
 });

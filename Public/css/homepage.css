@@ -287,3 +287,26 @@ th {
     border: 1px solid #ddd !important;
   }
 }
+
+
+body {
+    background: gray
+}
+
+#products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#products div {
+    width : 230px;
+    min-height: 200px;
+    background: #cecece;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+#products div img {
+    max-width: 100%;
+}
